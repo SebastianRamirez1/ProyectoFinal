@@ -3,6 +3,7 @@ package view;
 import controller.LibroController;
 import controller.RevistaController;
 import controller.MaterialVideograficoController;
+import controller.MaterialController;
 import model.Libro;
 import model.Revista;
 import model.MaterialVideografico;
@@ -89,13 +90,13 @@ public class MainView {
         // Según el tipo de material seleccionado, se agrega el objeto correspondiente
         switch (tipo) {
             case 1:
-                libroController.agregarLibro(new Libro(titulo, autor, editorial, anio, cantidad));
+                libroController.agregarMaterial(new Libro(titulo, autor, editorial, anio, cantidad));
                 break;
             case 2:
                 System.out.print("Tipo de Revista: ");
                 scanner.nextLine();
                 String tipoRevista = scanner.nextLine();
-                revistaController.agregarRevista(new Revista(titulo, autor, editorial, anio, cantidad, tipoRevista));
+                revistaController.agregarMaterial(new Revista(titulo, autor, editorial, anio, cantidad, tipoRevista));
                 break;
             case 3:
                 System.out.print("Duración (HH:MM): ");
@@ -118,7 +119,7 @@ public class MainView {
         
         // Listar Libros
         System.out.println("Libros:");
-        libroController.listarLibros().forEach(libro -> {
+        libroController.listarMateriales().forEach(libro -> {
             System.out.println(" - Título: " + libro.getTitulo());
             System.out.println("   Autor: " + libro.getAutor());
             System.out.println("   Editorial: " + libro.getEditorial());
@@ -129,7 +130,7 @@ public class MainView {
 
         // Listar Revistas
         System.out.println("Revistas:");
-        revistaController.listarRevistas().forEach(revista -> {
+        revistaController.listarMateriales().forEach(revista -> {
             System.out.println(" - Título: " + revista.getTitulo());
             System.out.println("   Autor: " + revista.getAutor());
             System.out.println("   Editorial: " + revista.getEditorial());
@@ -159,8 +160,8 @@ public class MainView {
         scanner.nextLine();
         String tituloEliminar = scanner.nextLine();
         // Llama a los controladores para eliminar el material correspondiente
-        libroController.eliminarLibro(tituloEliminar);
-        revistaController.eliminarRevista(tituloEliminar);
+        libroController.eliminarMaterial(tituloEliminar);
+        revistaController.eliminarMaterial(tituloEliminar);
         videoController.eliminarMaterial(tituloEliminar);
     }
 
